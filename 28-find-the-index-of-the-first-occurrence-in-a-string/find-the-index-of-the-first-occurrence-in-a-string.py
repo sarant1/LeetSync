@@ -5,4 +5,5 @@ class Solution:
             if haystack[i] == needle[0]:
                 if haystack[i:i+n] == needle:
                     return i
+                i+=n
         return -1
