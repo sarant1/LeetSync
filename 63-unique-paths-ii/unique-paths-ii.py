@@ -4,7 +4,6 @@ class Solution:
         dp[len(obstacleGrid)-1][len(obstacleGrid[0])-1] = 1
 
         def dfs(x, y):
-            print(x,y)
             if x >= len(obstacleGrid) or y >= len(obstacleGrid[0]) or obstacleGrid[x][y]:
                 return 0
             if dp[x][y]:
