@@ -1,12 +1,15 @@
 class Solution:
     def findLongestChain(self, pairs: List[List[int]]) -> int:
         pairs.sort(key=lambda x: x[1])
-        curr, ans = float('-inf'), 0
+        print(pairs)
+        total,curr = 1,0
+        for i in range(1, len(pairs)):
+            if pairs[curr][1] < pairs[i][0]:
+                curr = i
+                total += 1
+        return total
 
-        for pair in pairs:
-            if curr < pair[0]:
-                curr = pair[1]
-                ans += 1
-        return ans
+
+
 
 
