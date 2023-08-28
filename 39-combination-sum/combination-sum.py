@@ -1,19 +1,23 @@
 class Solution:
-    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]: 
-        def dfs(currIndex, combSum, arr, result):
-            if combSum == target:
-                result.append(list(arr))
-                print(arr)
-                return 
-            elif combSum > target:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        ans = []
+        def dfs(currVal, curr, g):
+            if currVal > target or g >= len(candidates):
                 return
-            for g in range(currIndex, len(candidates)):
-                arr.append(candidates[g])
-                combSum += candidates[g]
-                dfs(g, combSum, arr, result)
-                arr.pop()
-                combSum -= candidates[g]
-            return result
-        return dfs(0, 0, [], [])
+            elif currVal == target:
+                ans.append(list(curr))
+                return
+            for i in range(g, len(candidates)):
+                currVal += candidates[i]
+                curr.append(candidates[i])
+                dfs(currVal, curr, i)
+                curr.pop()
+                currVal -= candidates[i] 
+        dfs(0, [], 0)
+        return ans
 
 
+
+                
+
+        
