@@ -9,28 +9,23 @@ class Node:
 
 class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
-        if not head:
-            return None
+        curr = head
         hmap = {}
-        q = deque()
-
-        prev = head
-        curr = prev.next
         while curr:
-            hmap[prev] = Node(prev.val, None, None)
-            q.append((hmap[prev],prev.random, prev.next))
-            prev = curr
+            hmap[curr] = Node(curr.val)
             curr = curr.next
-        hmap[prev] = Node(prev.val, None, None)
-        q.append((hmap[prev], prev.random, prev.next))
-        while q:
-            curr, rand, nextNode = q.popleft()
-            if nextNode:
-                curr.next = hmap[nextNode]
-            if rand:
-                curr.random = hmap[rand]
-            else:
-                curr.random = None
-        return hmap[head]
+        
+        curr = head
+
+        while curr:
+            if curr.random:
+                hmap[curr].random = hmap[curr.random]
+            if curr.next:
+                hmap[curr].next = hmap[curr.next]
+            curr = curr.next
+
+        return hmap[head] if head else None 
+    
+        
 
         
