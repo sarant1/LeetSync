@@ -1,26 +1,14 @@
 class Solution:
     def minDeletions(self, s: str) -> int:
-        hmap = {}
-        arr = [0] * 26
-        count = 0
-        for l in s:
-            arr[ord(l)-ord('a')]+=1
-        for i, amt in enumerate(arr):
-            if amt == 0:
-                continue
-            if amt in hmap:
-                temp = amt
-                while temp in hmap:
-                    count += 1
-                    temp -= 1
-                    if temp == 0:
-                        break
-                hmap[temp] = i
-            else:
-                hmap[amt] = i
-        return count
+        count = collections.Counter(s)
+        used_freq = set() 
+        res = 0
+        # iterating through the dict with .items() { c:freq }
+        for c, freq in count.items():
+            while freq in used_freq:
+                freq -= 1
+                res += 1
+            if freq != 0:
+                used_freq.add(freq)
+        return res
 
-            
-
-
-        
