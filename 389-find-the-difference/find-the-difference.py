@@ -1,12 +1,19 @@
 class Solution:
     def findTheDifference(self, s: str, t: str) -> str:
+        s = sorted(s)
+        t = sorted(t)
+        print(s)
+        print(t)
+        for i in range(len(t)-1): 
+            if s[i] != t[i]:
+                return t[i]
+        return t[-1]
+            
 
-        hmap = defaultdict(int) 
 
-        for l in s:
-            hmap[l] += 1
-        for g in t:
-            hmap[g] -= 1
-            if hmap[g] < 0:
-                return g   
+
+
+
+
+
         
