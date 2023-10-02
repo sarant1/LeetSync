@@ -1,11 +1,19 @@
 class Solution:
     def winnerOfGame(self, colors: str) -> bool:
         alice = 0
-        bob = 0
-        for i in range(1,len(colors)-1):
-            if colors[i] == "A" and colors[i-1] == "A" and colors[i+1] == "A":
-                alice += 1
-            if colors[i] == "B" and colors[i-1] == "B" and colors[i+1] == "B":
-                bob += 1
-        return alice > bob
+        l = 0
+        for r in range(len(colors)):
+            if colors[l] != colors[r]:
+                l = r
+            curr = r - l + 1 - 2
+            if curr > 0:
+                if colors[r] == "A":
+                    alice += 1
+                if colors[r] == "B":
+                    alice -= 1
+        return alice > 0 
+            
+
+
+
         
