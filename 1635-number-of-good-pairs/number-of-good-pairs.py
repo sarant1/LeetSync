@@ -1,6 +1,6 @@
 class Solution:
     def numIdenticalPairs(self, nums: List[int]) -> int:
-        found = defaultdict(int)
+        found = {} 
         ans = 0
         for i in range(len(nums)-1, -1, -1):
             curr = nums[i]
