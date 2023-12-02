@@ -1,23 +1,26 @@
 class Solution:
     def countCharacters(self, words: List[str], chars: str) -> int:
-        ans = 0
-        hmap = defaultdict(int) 
-        for c in chars:
-            hmap[c]+=1 
-        
-        for word in words:
-            temp = defaultdict(int, hmap)
-            isValid = True
-            for c in word:
-                if temp[c] < 1:
-                    isValid=False
-                    break
-                else:
-                    temp[c]-=1
-            if isValid:
-                ans+=len(word)
-        return ans
-
+        chars = Counter(chars)
+        temp = defaultdict(int, chars)
+        #Add all lengths of words 
+        idx = 0 
+        pointer = 0 
+        ans = 0 
+        #Working on basis of two pointers 
+        while pointer < len(words):
+            if idx == len(words[pointer]):
+                ans += len(words[pointer])
+                idx , pointer = 0 , pointer + 1 
+                temp = defaultdict(int, chars)
+                continue
+            c = words[pointer][idx]
+            if temp[c] < 1:
+                idx , pointer = 0 , pointer + 1 
+                temp = defaultdict(int, chars)
+                continue
+            idx += 1   
+            temp[c]-=1
+        return ans 
                 
 
         
