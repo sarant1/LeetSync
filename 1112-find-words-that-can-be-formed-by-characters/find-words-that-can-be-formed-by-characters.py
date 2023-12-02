@@ -16,9 +16,6 @@ class Solution:
                     temp[c]-=1
             if isValid:
                 ans+=len(word)
-            else:
-                print(temp)
-                print(word)
         return ans
 
                 
