@@ -12,8 +12,6 @@ class Solution:
                 lo1 = num
             elif num < lo2:
                 lo2 = num
-        print(hi1, hi2)
-        print(lo1, lo2)
         return (hi1*hi2) - (lo1*lo2)
 
 
