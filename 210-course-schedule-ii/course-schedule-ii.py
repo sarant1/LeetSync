@@ -6,23 +6,25 @@ class Solution:
         for course in prerequisites:
             adj[course[1]].append(course[0])
             inDegree[course[0]]+=1
-        for i in range(len(adj)):
-            if not inDegree[i]:
+        for i in range(numCourses):
+            if inDegree[i] == 0:
+                visited = set()
                 stack = [i]
-                visited = set() 
                 while stack:
                     cur = stack.pop()
-                    for crse in adj[cur]:
-                        inDegree[crse]-=1
-                        if not inDegree[crse]:
-                            stack.append(crse)
+                    for course in adj[cur]:
+                        inDegree[course]-=1
+                        if inDegree[course] == 0:
+                            stack.append(course)
                     if cur in visited:
                         return []
                     elif inDegree[cur] == 0:
+                        ans.append(cur)
                         inDegree[cur]-=1
-                        ans.append(cur) 
-                        visited.add(cur)
-        return ans if len(ans) == numCourses else [] 
+        return ans if len(ans) == numCourses else []
+
+
+        
 
 
 
