@@ -1,56 +1,21 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        adj = defaultdict(list)
-        inDegrees = [0]*numCourses
-
-        for c,p in prerequisites:
-            adj[p].append(c)
-            inDegrees[c]+=1
-
-        q = deque() 
-        ans = []
-        visited = {i:False for i in range(numCourses)} 
-
-        for i in range(len(inDegrees)):
-            if inDegrees[i] == 0:
-                q.append(i)
-        while q:
-            current = q.popleft()
-            ans.append(current)
-
-
-            for next_course in adj[current]:
-                inDegrees[next_course] -= 1
-                if inDegrees[next_course] == 0:
-                    q.append(next_course)
-
-        return len(ans) == numCourses
-
-
-
-
-
-
-            
-
-
-
-
-
-
-
-
-            
-
+        adj = [[] for _ in range(numCourses)]
+        inDegree = [0] * numCourses
+        for course in prerequisites:
+            adj[course[1]].append(course[0])
+            inDegree[course[0]]+=1
+        stack = []
+        for i in range(numCourses):
+            if inDegree[i] == 0:
+                stack.append(i)
+        while stack:
+            cur = stack.pop()
+            for course in adj[cur]:
+                inDegree[course]-=1
+                if inDegree[course] == 0:
+                    stack.append(course)
+        return all(inD==0 for inD in inDegree)
         
 
-                
-            
-            
-            
-
-
-
-
-
-
+        
