@@ -4,12 +4,11 @@ class Solution:
         prev = ""
         prevAmt = 0
         for i in range(len(colors)):
-            color = colors[i]
-            if color == prev:
+            if colors[i] == prev:
                 ans+=min(neededTime[i], prevAmt)
                 prevAmt = max(neededTime[i], prevAmt)
             else:
                 prevAmt = neededTime[i]
-            prev = color
+            prev = colors[i]
         return ans
         
