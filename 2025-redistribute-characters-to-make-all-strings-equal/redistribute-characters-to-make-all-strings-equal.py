@@ -1,10 +1,10 @@
 class Solution:
     def makeEqual(self, words: List[str]) -> bool:
-        counter = [0] * 26
+        counter = defaultdict(int) 
         for word in words:
             for char in word:
-                counter[ord(char)-ord("a")]+=1
-        for total in counter:
+                counter[char]+=1
+        for i, total in counter.items():
             if total % len(words):
                 return False
         return True
