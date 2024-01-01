@@ -11,11 +11,6 @@ class Solution:
                 cur.append(candidates[j])
                 dfs(j, total+candidates[j], cur)
                 cur.pop()
-        candidates.sort()
-        for i in range(len(candidates)):
-            num = candidates[i]
-            if num > target:
-                break
-            dfs(i, num, [num])
+        dfs(0, 0, [])
         return ans
         
