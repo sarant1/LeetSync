@@ -1,18 +1,20 @@
 class Solution:
     def integerReplacement(self, n: int) -> int:
-        ans = 0
-        def count(total, res):
-            if total == 1:
-                return res
-            if total % 2:
-                res = min(
-                        count(total+1, res+1),
-                        count(total-1, res+1)
-                        )
+        dp = {}
+        dp[1] = 0
+        dp[0] = 0
+        def count(n):
+            if n in dp:
+                return dp[n]
+            if n % 2:
+                dp[n] = min(
+                    1+count(n+1),
+                    1+count(n-1)
+                )
             else:
-                res = count(total//2, res+1)
-            return res
-        return count(n, 0)
+                dp[n] = 1+count(n//2)
+            return dp[n]
+        return count(n)
             
                 
         
