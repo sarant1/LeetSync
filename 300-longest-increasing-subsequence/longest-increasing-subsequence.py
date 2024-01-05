@@ -1,12 +1,11 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         subseq = []
-        for n in nums:
-            index = bisect.bisect_left(subseq, n)
-            if index >= len(subseq):
-                subseq.append(n)
+        for num in nums:
+            i = bisect.bisect_left(subseq, num)
+            if i >= len(subseq):
+                subseq.append(num)
             else:
-                subseq[index] = n
+                subseq[i] = num
         return len(subseq)
-        
         
