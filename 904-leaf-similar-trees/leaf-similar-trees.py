@@ -11,9 +11,9 @@ class Solution:
             if not node.left and not node.right:
                 return (str(node.val) + ",")
             if node.left:
-                cur += (str(dfs(node.left)))
+                cur += dfs(node.left)
             if node.right:
-                cur += (str(dfs(node.right)))
+                cur += dfs(node.right)
             return cur
         return dfs(root1) == dfs(root2) 
         
