@@ -1,13 +1,19 @@
 class Solution:
     def uniqueOccurrences(self, arr: List[int]) -> bool:
-        occurs = defaultdict(int) 
-        for num in arr:
-            occurs[num]+=1 
+        arr.sort()
+        prev, cur = "", 0
         count = set()
-        for key, val in occurs.items():
-            if val in count:
-                return False
-            count.add(val)
+        for num in arr:
+            if num == prev:
+                cur+=1
+            else:
+                if cur in count:
+                    return False
+                count.add(cur)
+                cur = 1
+            prev = num
+        if cur in count:
+            return False
         return True
 
 
