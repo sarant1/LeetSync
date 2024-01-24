@@ -1,17 +1,18 @@
 class Solution:
     def maxLength(self, arr: List[str]) -> int:
         def dfs(cur, i):
-            temp_cur = "".join(cur)
-            if len(set(temp_cur)) != len(temp_cur):
+            temp_str = "".join(cur)
+            if len(set(temp_str)) != len(temp_str):
                 return 0
-            amt = len(temp_cur)
+            amt = len(temp_str)
             for j in range(i, len(arr)):
                 cur.append(arr[j])
                 amt = max(amt, dfs(cur, j))
                 cur.pop()
             return amt
-        ans = 0
+        length = 0
         for i in range(len(arr)):
-            ans = max(ans, dfs([], i))
-        return ans
+            length = max(length, dfs([], i))
+        return length
+
         
