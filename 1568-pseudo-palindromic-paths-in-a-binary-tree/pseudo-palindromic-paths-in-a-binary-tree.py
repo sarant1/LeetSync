@@ -6,31 +6,26 @@
 #         self.right = right
 class Solution:
     def pseudoPalindromicPaths (self, root: Optional[TreeNode]) -> int:
+        count = [0] * 10
         def can_palindrome(cur_count):
-            loner = False
-            for count in cur_count:
-                if count % 2 == 0:
-                    continue
-                elif count == 1 and loner == False:
-                    loner = True
-                elif count % 2 and loner == False:
-                    loner = True
-                else:
-                    return 0
-            return 1
+            odd = 0
+            for cnt in cur_count:
+                if cnt % 2:
+                    odd+=1
+            return 1 if odd <= 1 else 0
         def dfs(node, cur_count):
             ans = 0
+            if not node:
+                return 0
             cur_count[node.val]+=1
             if not node.left and not node.right:
                 temp = can_palindrome(cur_count)
                 cur_count[node.val]-=1
                 return temp
-            if node.left:
-                ans += dfs(node.left, cur_count)
-            if node.right:
-                ans += dfs(node.right, cur_count)
+            ans += dfs(node.left, cur_count)
+            ans += dfs(node.right, cur_count)
             cur_count[node.val]-=1
             return ans
-        counts = [0] * 10
-        return dfs(root, counts)
+
+        return dfs(root, count)
         
