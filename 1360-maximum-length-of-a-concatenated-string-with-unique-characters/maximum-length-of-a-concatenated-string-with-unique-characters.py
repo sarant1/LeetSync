@@ -7,7 +7,8 @@ class Solution:
             amt = len(temp_str)
             for j in range(i, len(arr)):
                 cur.append(arr[j])
-                amt = max(amt, dfs(cur, j))
+                print(cur)
+                amt = max(amt, dfs(cur, j+1))
                 cur.pop()
             return amt
         length = 0
