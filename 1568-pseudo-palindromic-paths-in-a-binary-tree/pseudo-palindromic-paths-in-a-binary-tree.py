@@ -7,7 +7,6 @@
 class Solution:
     def pseudoPalindromicPaths (self, root: Optional[TreeNode]) -> int:
         def can_palindrome(cur_count):
-            print(cur_count)
             loner = False
             for count in cur_count:
                 if count % 2 == 0:
