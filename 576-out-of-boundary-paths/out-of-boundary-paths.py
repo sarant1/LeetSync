@@ -14,7 +14,7 @@ class Solution:
                 dfs(moves-1, x-1, y) +
                 dfs(moves-1, x, y+1) +
                 dfs(moves-1, x, y-1)  
-            ) 
+            ) % mod 
             cache[(x, y, moves)] = res
             return res 
         return dfs(maxMove, startRow, startColumn) % mod
