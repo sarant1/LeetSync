@@ -10,12 +10,8 @@ class Solution:
             return int1*int2
         stack = []
         for token in tokens:
-            if len(token) == 1 and ord(token) < 48:
-                int1 = stack.pop()
-                int2 = stack.pop()
-                operator = token
-                resolved_ans = resolve(int(int1), int(int2), operator)
-                stack.append(resolved_ans)
+            if token == "+" or token == "/" or token == "-" or token == "*":
+                stack.append(resolve(stack.pop(), stack.pop(), token))
             else:
                 stack.append(int(token))
         return stack.pop()
