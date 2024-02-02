@@ -8,7 +8,6 @@ class Solution:
 
             while num <= high and next_digit <= 9:
                 num = num * 10 + next_digit
-                print(num)
                 if low <= num <= high:
                     a.append(num)
                 next_digit+=1
