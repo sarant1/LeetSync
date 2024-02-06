@@ -1,13 +1,16 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        cache = {}
         ans = []
-        hashmap = {}
-        for word in strs:
-            temp = "".join(sorted(word))
-            if temp in hashmap:
-                ans[hashmap[temp]].append(word)
+        pos = 0
+        for string in strs:
+            s = sorted(string)
+            s = "".join(s)
+            if s in cache:
+                ans[cache[s]].append(string) 
             else:
-                hashmap[temp] = len(ans)
-                ans.append([word])
+                cache[s] = pos
+                ans.append([string])
+                pos+=1
         return ans
-                
+        
