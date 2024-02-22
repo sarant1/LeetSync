@@ -15,8 +15,6 @@ class Solution:
             if trusting[i] > cur:
                 cur = trusting[i]
                 judge = i
-        print(trusting)
-        print(judge)
         return judge if judge not in checked and len(checked) + 1 == n else -1
 
         
